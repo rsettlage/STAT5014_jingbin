@@ -1,0 +1,66 @@
+---
+title: "HW1_JingBin"
+author: "Jingbin Xu"
+date: '`r Sys.Date()`'
+output: pdf_document
+---
+
+# Problem 1
+
+I have finished the Primers labeled as The Basics on Rstudio.cloud.
+
+# Problem 2
+
+### Part A
+People enrolled in this course have a different background. Before I moved to VT, I worked as a Biostatistician and Data manager at LA after I graduated from UC Irvine. I am interested in the following topics:
+
+* 1. How to present high-quality graphs (informative, vivid and easy for all audience)
+* 2. Parallel computing (How to break down the assignments to achieve the max efficiency?)
+* 3. Handling the data on cloud (I am not sure whether this course would cover the topic, but with the advanced data era, we always expect more than we want.)
+
+### Part B
+Beta distribution:
+\begin{eqnarray}
+f(x \mid \alpha, \beta) = \frac{1}{B(\alpha, \beta)}x^{\alpha-1}(1-x)^{\beta-1} \quad 0 \leq x \leq 1, \quad \alpha > 0, \quad \beta > 0 
+\end{eqnarray}
+
+Normal distribution:
+\begin{eqnarray}
+f(x \mid \mu, \sigma^{2}) = \frac{1}{\sqrt{2 \pi} \sigma} e^{-(x - \mu)^{2}/(2 \sigma^{2})}, \quad -\infty < x < \infty, \quad - \infty < \mu < \infty, \quad \sigma > 0
+\end{eqnarray}
+
+Exponential distribution:
+\begin{eqnarray}
+f(x \mid \beta) = \frac{1}{\beta} e^{-x / \beta}, \quad 0 \leq x < \infty, \quad \beta > 0
+\end{eqnarray}
+
+# Problem 3
+A good start of conducting the data analysis is to have general guidelines/design. The dataset named **mtcars** is very classic and has been written in many trending textbooks. So I am conducting the analysis based on this dataset. Before I perform my analysis, I carefully read the **10 simple rules of reproducible research**. And here are my take-away notes:
+
+## Always visualize the data first
+I prefer to use a summary function to check each column, and then I will run a scatterplot to identify potential outliers and errors. Based on this preliminary analysis, we could achieve two goals. The first goal is to avoid manual data manipulation steps (for instance, with the analysis, we have a formal and trackable justification for removing outliers). The second goal is to avoid jumping into conclusions too early. Sometimes people go straight to the destination may not be a wise step. As for data analysis, there always lies the trap for careless drivers.
+
+## Smart variable name
+I enjoy naming my variable in the program with the same pattern and comment on every critical step I made. So when someone reviews my code, they could follow my logic flow and be more efficient.
+
+## Be careful with the plot save function in R
+There are multiple ways to save the graph in R. However, we do not cover that part. But when I read about **always store raw data behind plots**, it suddenly came to my mind. I did not find a better way to automatically keep the graph on the cloud or at the local device in R. So it is tough to version control the graphs we made (I have tried some automated algorithms but it all does not work very well. So if someone knows, please let me know)
+
+
+# Problem 4
+
+```{r}
+# Loading the car dataset
+datasets::mtcars
+# Scatter plot for mpg vs hp
+graph_scatter = plot(mtcars$mpg, 
+     mtcars$hp,
+     main = "Scatter Plot: Miles Per Gallon vs House Power",
+     xlab = "Miles Per Gallon",
+     ylab = "House Power")
+# Histogram for mpg
+graph_hist = hist(mtcars$mpg, 
+     main = "Distribution of Cars by Mileage", 
+     xlab = "Miles Per Gallon", 
+     ylab = "Frequency")
+```
